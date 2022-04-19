@@ -1,4 +1,4 @@
-package com.anupdey.app.compose_playground.presentation.company_listings
+package com.anupdey.app.compose_playground.presentation.stock_market.company_listings
 
 sealed class CompanyListingsEvent {
     object Refresh: CompanyListingsEvent()

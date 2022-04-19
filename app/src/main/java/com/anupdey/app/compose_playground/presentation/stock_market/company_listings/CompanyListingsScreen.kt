@@ -1,4 +1,4 @@
-package com.anupdey.app.compose_playground.presentation.company_listings
+package com.anupdey.app.compose_playground.presentation.stock_market.company_listings
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -9,7 +9,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.anupdey.app.compose_playground.presentation.destinations.CompanyInfoScreenDestination
+import com.anupdey.app.compose_playground.presentation.stock_market.destinations.CompanyInfoScreenDestination
 import com.google.accompanist.swiperefresh.SwipeRefresh
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.ramcosta.composedestinations.annotation.Destination

@@ -1,4 +1,4 @@
-package com.anupdey.app.compose_playground.presentation.company_info
+package com.anupdey.app.compose_playground.presentation.stock_market.company_info
 
 import com.anupdey.app.compose_playground.domain.model.CompanyInfo
 import com.anupdey.app.compose_playground.domain.model.IntradayInfo

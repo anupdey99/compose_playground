@@ -1,4 +1,4 @@
-package com.anupdey.app.compose_playground.presentation.company_info
+package com.anupdey.app.compose_playground.presentation.stock_market.company_info
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
