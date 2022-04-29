@@ -10,6 +10,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.anupdey.app.compose_playground.destinations.CoinListScreenDestination
+import com.anupdey.app.compose_playground.destinations.RegistrationFormScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 
@@ -26,6 +27,14 @@ fun MainScreen(
             modifier = Modifier.padding(4.dp)
         ) {
             Text(text = "CryptoCurrency")
+        }
+        Button(
+            onClick = {
+                navigator.navigate(RegistrationFormScreenDestination())
+            },
+            modifier = Modifier.padding(4.dp)
+        ) {
+            Text(text = "Registration Form")
         }
     }
 
