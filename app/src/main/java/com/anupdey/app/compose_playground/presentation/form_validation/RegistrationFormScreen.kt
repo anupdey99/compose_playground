@@ -125,9 +125,9 @@ fun RegistrationFormScreen(
             maxLines = 1,
             singleLine = true
         )
-        if (state.passwordError != null) {
+        if (state.repeatedPasswordError != null) {
             Text(
-                text = state.passwordError,
+                text = state.repeatedPasswordError,
                 color = MaterialTheme.colors.error,
                 modifier = Modifier.align(Alignment.End).padding(top = 2.dp),
                 fontSize = 12.sp

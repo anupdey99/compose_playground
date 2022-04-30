@@ -6,11 +6,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.ramcosta.composedestinations.annotation.Destination
+import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import kotlin.math.roundToInt
 
+@Destination
 @ExperimentalComposeUiApi
 @Composable
-fun MusicControl() {
+fun MusicControlScreen(
+    navigator: DestinationsNavigator
+) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.fillMaxSize()
