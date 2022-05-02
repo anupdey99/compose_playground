@@ -20,4 +20,10 @@ interface StockRepository {
     suspend fun getCompanyInfo(
         symbol: String
     ): Resource<CompanyInfo>
+
+    suspend fun getCompanyListPaging(
+        page: Int,
+        pageSize: Int
+    ): Result<List<CompanyListing>>
+
 }

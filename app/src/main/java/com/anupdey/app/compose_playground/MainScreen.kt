@@ -61,6 +61,14 @@ fun MainScreen(
         ) {
             Text(text = "Progressbar")
         }
+        Button(
+            onClick = {
+                navigator.navigate(PagingScreenDestination())
+            },
+            modifier = Modifier.padding(4.dp)
+        ) {
+            Text(text = "Paging")
+        }
     }
 
     //play Stock market

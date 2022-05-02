@@ -12,6 +12,7 @@ import com.anupdey.app.compose_playground.domain.model.CompanyListing
 import com.anupdey.app.compose_playground.domain.model.IntradayInfo
 import com.anupdey.app.compose_playground.domain.repository.StockRepository
 import com.anupdey.app.compose_playground.util.Resource
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import retrofit2.HttpException
@@ -106,5 +107,32 @@ class StockRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun getCompanyListPaging(page: Int, pageSize: Int): Result<List<CompanyListing>> {
+        return try {
+            delay(2000L)
+            val startingIndex = page * pageSize
+            val lastIndex = startingIndex + pageSize
+            if (lastIndex <= pagingCompanyList.size) {
+                val list = pagingCompanyList.slice(startingIndex until lastIndex)
+                Result.success(list)
+            } else {
+                Result.success(emptyList())
+            }
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Result.failure(Throwable(e.message))
+        } catch (e: HttpException) {
+            e.printStackTrace()
+            Result.failure(Throwable(e.message))
+        }
+    }
+
+    private val pagingCompanyList = (1..100).map {
+        CompanyListing(
+            "Company $it",
+            "S$it",
+            "ex$it"
+        )
+    }
 
 }
