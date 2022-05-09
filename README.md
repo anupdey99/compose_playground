@@ -20,6 +20,7 @@ Simple project for playing with jetpack compose library, features etc.
 
 
 ## Screenshots
+preview | preview
 --- | ---
 ![Screenshot1](/.github/images/1.jpg) | ![Screenshot2](/.github/images/2.jpg)
 ![Screenshot3](/.github/images/3.jpg) | ![Screenshot4](/.github/images/4.jpg)
