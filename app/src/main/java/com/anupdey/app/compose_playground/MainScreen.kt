@@ -69,6 +69,14 @@ fun MainScreen(
         ) {
             Text(text = "Paging")
         }
+        Button(
+            onClick = {
+                navigator.navigate(LightSensorScreenDestination())
+            },
+            modifier = Modifier.padding(4.dp)
+        ) {
+            Text(text = "Sensor")
+        }
     }
 
     //play Stock market

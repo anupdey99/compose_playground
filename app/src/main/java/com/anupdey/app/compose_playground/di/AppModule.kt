@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.anupdey.app.compose_playground.data.local.StockDatabase
 import com.anupdey.app.compose_playground.data.remote.APIInterface
 import com.anupdey.app.compose_playground.data.remote.CoinPaprikaApi
+import com.anupdey.app.compose_playground.presentation.sensor.LightSensor
+import com.anupdey.app.compose_playground.presentation.sensor.MeasurableSensor
 import com.anupdey.app.compose_playground.util.AppConstant
 import dagger.Module
 import dagger.Provides
@@ -58,5 +60,11 @@ object AppModule {
             StockDatabase::class.java,
             AppConstant.DATABASE_NAME
         ).build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideLightSensor(app: Application): MeasurableSensor {
+        return LightSensor(app)
     }
 }
