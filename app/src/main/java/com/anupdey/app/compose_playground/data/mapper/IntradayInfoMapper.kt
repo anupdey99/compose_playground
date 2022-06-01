@@ -2,8 +2,8 @@ package com.anupdey.app.compose_playground.data.mapper
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import com.anupdey.app.compose_playground.data.remote.dto.IntradayInfoDto
-import com.anupdey.app.compose_playground.domain.model.IntradayInfo
+import com.anupdey.app.compose_playground.data.remote.dto.stock.IntradayInfoDto
+import com.anupdey.app.compose_playground.domain.model.stock.IntradayInfo
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*

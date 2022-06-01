@@ -12,8 +12,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.anupdey.app.compose_playground.destinations.CoinDetailScreenDestination
 import com.anupdey.app.compose_playground.presentation.coinpaprika.coin_list.components.CoinListItem
+import com.anupdey.app.compose_playground.presentation.destinations.CoinDetailScreenDestination
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 

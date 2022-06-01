@@ -2,15 +2,17 @@ package com.anupdey.app.compose_playground.data.repository
 
 import android.util.Log
 import com.anupdey.app.compose_playground.data.csv.CSVParser
-import com.anupdey.app.compose_playground.data.local.StockDatabase
+import com.anupdey.app.compose_playground.data.local.AppDatabase
 import com.anupdey.app.compose_playground.data.mapper.toCompanyInfo
 import com.anupdey.app.compose_playground.data.mapper.toCompanyListing
 import com.anupdey.app.compose_playground.data.mapper.toCompanyListingEntity
-import com.anupdey.app.compose_playground.data.remote.APIInterface
-import com.anupdey.app.compose_playground.domain.model.CompanyInfo
-import com.anupdey.app.compose_playground.domain.model.CompanyListing
-import com.anupdey.app.compose_playground.domain.model.IntradayInfo
+import com.anupdey.app.compose_playground.data.remote.StockAPI
+import com.anupdey.app.compose_playground.domain.model.stock.CompanyInfo
+import com.anupdey.app.compose_playground.domain.model.stock.CompanyListing
+import com.anupdey.app.compose_playground.domain.model.stock.IntradayInfo
 import com.anupdey.app.compose_playground.domain.repository.StockRepository
+import com.anupdey.app.compose_playground.util.ApiError
+import com.anupdey.app.compose_playground.util.ErrorType
 import com.anupdey.app.compose_playground.util.Resource
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -22,17 +24,17 @@ import javax.inject.Singleton
 
 @Singleton
 class StockRepositoryImpl @Inject constructor(
-    private val api: APIInterface,
-    private val db: StockDatabase,
+    private val stockApi: StockAPI,
+    private val appDatabase: AppDatabase,
     private val companyListingsParser: CSVParser<CompanyListing>,
     private val intradayInfoParser: CSVParser<IntradayInfo>
 ): StockRepository {
 
-    private val dao = db.dao
+    private val dao = appDatabase.stockDao
 
     override suspend fun getCompanyListings(fetchFromRemote: Boolean, query: String): Flow<Resource<List<CompanyListing>>> {
         return flow {
-            emit(Resource.Loading(true))
+            emit(Resource.Loading())
             val localListings = dao.searchCompanyListing(query)
             emit(Resource.Success(
                 localListings.map { it.toCompanyListing() }
@@ -41,19 +43,19 @@ class StockRepositoryImpl @Inject constructor(
             val isDbEmpty = localListings.isEmpty() && query.isBlank()
             val shouldJustLoadFromCache = !isDbEmpty && !fetchFromRemote
             if(shouldJustLoadFromCache) {
-                emit(Resource.Loading(false))
+                emit(Resource.Loading())
                 return@flow
             }
             val remoteListings = try {
-                val response = api.getListings()
+                val response = stockApi.getListings()
                 companyListingsParser.parse(response.byteStream())
             } catch(e: IOException) {
                 e.printStackTrace()
-                emit(Resource.Error("Couldn't load data"))
+                emit(Resource.Error(ApiError(ErrorType.NETWORK, "Couldn't reach server. Check your internet connection")))
                 null
             } catch (e: HttpException) {
                 e.printStackTrace()
-                emit(Resource.Error("Couldn't load data"))
+                emit(Resource.Error(ApiError(ErrorType.FAILURE, e.localizedMessage ?: "An unexpected error occurred")))
                 null
             }
 
@@ -66,44 +68,36 @@ class StockRepositoryImpl @Inject constructor(
                     dao.searchCompanyListing("")
                         .map { it.toCompanyListing() }
                 ))
-                emit(Resource.Loading(false))
+                emit(Resource.Loading())
             }
         }
     }
 
     override suspend fun getIntradayInfo(symbol: String): Resource<List<IntradayInfo>> {
         return try {
-            val response = api.getIntradayInfo(symbol)
+            val response = stockApi.getIntradayInfo(symbol)
             val results = intradayInfoParser.parse(response.byteStream())
             Log.d("repoDebug", "$results")
             Resource.Success(results)
         } catch(e: IOException) {
             e.printStackTrace()
-            Resource.Error(
-                message = "Couldn't load intraday info"
-            )
+            Resource.Error(ApiError(ErrorType.NETWORK, "Couldn't reach server. Check your internet connection"))
         } catch(e: HttpException) {
             e.printStackTrace()
-            Resource.Error(
-                message = "Couldn't load intraday info"
-            )
+            Resource.Error(ApiError(ErrorType.FAILURE, e.localizedMessage ?: "An unexpected error occurred"))
         }
     }
 
     override suspend fun getCompanyInfo(symbol: String): Resource<CompanyInfo> {
         return try {
-            val result = api.getCompanyInfo(symbol)
+            val result = stockApi.getCompanyInfo(symbol)
             Resource.Success(result.toCompanyInfo())
         } catch(e: IOException) {
             e.printStackTrace()
-            Resource.Error(
-                message = "Couldn't load company info"
-            )
+            Resource.Error(ApiError(ErrorType.NETWORK, "Couldn't reach server. Check your internet connection"))
         } catch(e: HttpException) {
             e.printStackTrace()
-            Resource.Error(
-                message = "Couldn't load company info"
-            )
+            Resource.Error(ApiError(ErrorType.FAILURE, e.localizedMessage ?: "An unexpected error occurred"))
         }
     }
 

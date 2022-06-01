@@ -1,12 +1,12 @@
 package com.anupdey.app.compose_playground.data.remote
 
 import com.anupdey.app.compose_playground.BuildConfig
-import com.anupdey.app.compose_playground.data.remote.dto.CompanyInfoDto
+import com.anupdey.app.compose_playground.data.remote.dto.stock.CompanyInfoDto
 import okhttp3.ResponseBody
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface APIInterface {
+interface StockAPI {
 
     @GET("query")
     suspend fun getListings(

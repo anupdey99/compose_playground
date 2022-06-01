@@ -1,9 +1,10 @@
-package com.anupdey.app.compose_playground.data.local
+package com.anupdey.app.compose_playground.data.local.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import com.anupdey.app.compose_playground.data.local.entities.stock.CompanyListingEntity
 
 @Dao
 interface StockDao {

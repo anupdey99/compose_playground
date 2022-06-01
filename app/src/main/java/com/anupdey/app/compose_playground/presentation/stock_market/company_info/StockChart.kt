@@ -13,7 +13,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.anupdey.app.compose_playground.domain.model.IntradayInfo
+import com.anupdey.app.compose_playground.domain.model.stock.IntradayInfo
 import kotlin.math.round
 import kotlin.math.roundToInt
 

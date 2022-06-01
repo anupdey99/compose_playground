@@ -1,4 +1,4 @@
-package com.anupdey.app.compose_playground.domain.model
+package com.anupdey.app.compose_playground.domain.model.stock
 
 import java.time.LocalDateTime
 

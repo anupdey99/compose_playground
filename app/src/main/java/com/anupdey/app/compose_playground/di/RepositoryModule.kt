@@ -4,10 +4,12 @@ import com.anupdey.app.compose_playground.data.csv.CSVParser
 import com.anupdey.app.compose_playground.data.csv.CompanyListingsParser
 import com.anupdey.app.compose_playground.data.csv.IntradayInfoParser
 import com.anupdey.app.compose_playground.data.repository.CoinRepositoryImpl
+import com.anupdey.app.compose_playground.data.repository.CurrencyLayerRepositoryImpl
 import com.anupdey.app.compose_playground.data.repository.StockRepositoryImpl
-import com.anupdey.app.compose_playground.domain.model.CompanyListing
-import com.anupdey.app.compose_playground.domain.model.IntradayInfo
+import com.anupdey.app.compose_playground.domain.model.stock.CompanyListing
+import com.anupdey.app.compose_playground.domain.model.stock.IntradayInfo
 import com.anupdey.app.compose_playground.domain.repository.CoinRepository
+import com.anupdey.app.compose_playground.domain.repository.CurrencyLayerRepository
 import com.anupdey.app.compose_playground.domain.repository.StockRepository
 import dagger.Binds
 import dagger.Module
@@ -27,8 +29,8 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindIntradayInfoParser(
-        intradayInfoParser: IntradayInfoParser
+    abstract fun bindIntraDayInfoParser(
+        intraDayInfoParser: IntradayInfoParser
     ): CSVParser<IntradayInfo>
 
     @Binds
@@ -42,4 +44,10 @@ abstract class RepositoryModule {
     abstract fun bindCoinRepository(
         repository: CoinRepositoryImpl
     ): CoinRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindCurrencyLayerRepository(
+        repository: CurrencyLayerRepositoryImpl
+    ): CurrencyLayerRepository
 }

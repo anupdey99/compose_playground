@@ -1,8 +1,8 @@
 package com.anupdey.app.compose_playground.domain.repository
 
-import com.anupdey.app.compose_playground.domain.model.CompanyInfo
-import com.anupdey.app.compose_playground.domain.model.CompanyListing
-import com.anupdey.app.compose_playground.domain.model.IntradayInfo
+import com.anupdey.app.compose_playground.domain.model.stock.CompanyInfo
+import com.anupdey.app.compose_playground.domain.model.stock.CompanyListing
+import com.anupdey.app.compose_playground.domain.model.stock.IntradayInfo
 import com.anupdey.app.compose_playground.util.Resource
 import kotlinx.coroutines.flow.Flow
 

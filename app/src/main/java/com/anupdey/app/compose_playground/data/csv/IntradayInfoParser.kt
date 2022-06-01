@@ -3,8 +3,8 @@ package com.anupdey.app.compose_playground.data.csv
 import android.os.Build
 import androidx.annotation.RequiresApi
 import com.anupdey.app.compose_playground.data.mapper.toIntradayInfo
-import com.anupdey.app.compose_playground.data.remote.dto.IntradayInfoDto
-import com.anupdey.app.compose_playground.domain.model.IntradayInfo
+import com.anupdey.app.compose_playground.data.remote.dto.stock.IntradayInfoDto
+import com.anupdey.app.compose_playground.domain.model.stock.IntradayInfo
 import com.opencsv.CSVReader
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext

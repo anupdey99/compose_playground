@@ -5,12 +5,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.anupdey.app.compose_playground.domain.model.CompanyListing
 import com.anupdey.app.compose_playground.domain.repository.StockRepository
 import com.anupdey.app.compose_playground.presentation.stock_market.company_listings.CompanyListingsState
-import com.anupdey.app.compose_playground.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

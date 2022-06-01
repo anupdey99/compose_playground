@@ -1,4 +1,4 @@
-package com.anupdey.app.compose_playground.data.remote.dto
+package com.anupdey.app.compose_playground.data.remote.dto.stock
 
 import com.squareup.moshi.Json
 

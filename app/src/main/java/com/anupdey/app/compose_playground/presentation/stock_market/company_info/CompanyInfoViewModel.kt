@@ -38,7 +38,7 @@ class CompanyInfoViewModel @Inject constructor(
                 is Resource.Error -> {
                     state = state.copy(
                         isLoading = false,
-                        error = result.message,
+                        error = result.error?.message,
                         company = null
                     )
                 }
@@ -55,7 +55,7 @@ class CompanyInfoViewModel @Inject constructor(
                 is Resource.Error -> {
                     state = state.copy(
                         isLoading = false,
-                        error = result.message,
+                        error = result.error?.message,
                         company = null
                     )
                 }

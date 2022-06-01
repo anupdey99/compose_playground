@@ -28,15 +28,16 @@ class CoinListViewModel @Inject constructor(
                 when (result) {
                     is Resource.Error -> {
                         state = state.copy(
-                            error = result.message
+                            error = result.error?.message,
+                            isLoading = false
                         )
                     }
                     is Resource.Loading -> {
-                        state = state.copy(isLoading = result.isLoading)
+                        state = state.copy(isLoading = true)
                     }
                     is Resource.Success -> {
                         result.data?.let { list ->
-                            state = state.copy(coins = list)
+                            state = state.copy(coins = list, isLoading = false)
                         }
                     }
                 }

@@ -1,4 +1,4 @@
-package com.anupdey.app.compose_playground.data.local
+package com.anupdey.app.compose_playground.data.local.entities.stock
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

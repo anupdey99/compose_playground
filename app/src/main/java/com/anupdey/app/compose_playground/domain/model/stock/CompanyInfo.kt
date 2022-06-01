@@ -1,4 +1,4 @@
-package com.anupdey.app.compose_playground.domain.model
+package com.anupdey.app.compose_playground.domain.model.stock
 
 data class CompanyInfo(
     val symbol: String,

@@ -1,6 +1,6 @@
 package com.anupdey.app.compose_playground.presentation.stock_market.company_listings
 
-import com.anupdey.app.compose_playground.domain.model.CompanyListing
+import com.anupdey.app.compose_playground.domain.model.stock.CompanyListing
 
 data class CompanyListingsState(
     val companies: List<CompanyListing> = emptyList(),

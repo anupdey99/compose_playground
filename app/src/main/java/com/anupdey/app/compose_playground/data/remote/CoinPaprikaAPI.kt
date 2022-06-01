@@ -5,7 +5,7 @@ import com.anupdey.app.compose_playground.data.remote.dto.coinpaprika.CoinDto
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface CoinPaprikaApi {
+interface CoinPaprikaAPI {
 
     @GET("/v1/coins")
     suspend fun getCoins(): List<CoinDto>

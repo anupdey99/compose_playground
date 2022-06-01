@@ -11,7 +11,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.anupdey.app.compose_playground.domain.model.CompanyListing
+import com.anupdey.app.compose_playground.domain.model.stock.CompanyListing
 
 @Composable
 fun CompanyItem(
