@@ -4,6 +4,7 @@ import com.anupdey.app.compose_playground.BuildConfig
 import com.anupdey.app.compose_playground.data.remote.CoinPaprikaAPI
 import com.anupdey.app.compose_playground.data.remote.CurrencyLayerAPI
 import com.anupdey.app.compose_playground.data.remote.StockAPI
+import com.anupdey.app.compose_playground.data.remote.WeatherApi
 import com.anupdey.app.compose_playground.util.AppConstant
 import com.anupdey.app.compose_playground.util.AuthInterceptor
 import dagger.Module
@@ -80,6 +81,17 @@ object NetworkModule {
             .client(client)
             .build()
             .create(CurrencyLayerAPI::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideWeatherApi(client: OkHttpClient): WeatherApi {
+        return Retrofit.Builder()
+            .baseUrl(AppConstant.BASE_URL_OPEN_METEO)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+            .create(WeatherApi::class.java)
     }
 
 }

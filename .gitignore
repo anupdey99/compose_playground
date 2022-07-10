@@ -1,7 +1,9 @@
 # Built application files
 *.apk
+*.arr
 *.ap_
 *.aab
+#/blob
 
 # Generated files
 app/release

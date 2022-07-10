@@ -97,5 +97,13 @@ fun MainScreen(
         ) {
             Text(text = "Calculator")
         }
+        Button(
+            onClick = {
+                navigator.navigate(WeatherScreenDestination())
+            },
+            modifier = Modifier.padding(4.dp)
+        ) {
+            Text(text = "Weather")
+        }
     }
 }

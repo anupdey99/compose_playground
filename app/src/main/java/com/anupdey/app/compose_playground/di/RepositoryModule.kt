@@ -6,11 +6,13 @@ import com.anupdey.app.compose_playground.data.csv.IntradayInfoParser
 import com.anupdey.app.compose_playground.data.repository.CoinRepositoryImpl
 import com.anupdey.app.compose_playground.data.repository.CurrencyLayerRepositoryImpl
 import com.anupdey.app.compose_playground.data.repository.StockRepositoryImpl
+import com.anupdey.app.compose_playground.data.repository.WeatherRepositoryImpl
 import com.anupdey.app.compose_playground.domain.model.stock.CompanyListing
 import com.anupdey.app.compose_playground.domain.model.stock.IntradayInfo
 import com.anupdey.app.compose_playground.domain.repository.CoinRepository
 import com.anupdey.app.compose_playground.domain.repository.CurrencyLayerRepository
 import com.anupdey.app.compose_playground.domain.repository.StockRepository
+import com.anupdey.app.compose_playground.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -50,4 +52,10 @@ abstract class RepositoryModule {
     abstract fun bindCurrencyLayerRepository(
         repository: CurrencyLayerRepositoryImpl
     ): CurrencyLayerRepository
+
+    @Binds
+    @Singleton
+    abstract fun bindWeatherRepository(
+        weatherRepositoryImpl: WeatherRepositoryImpl
+    ): WeatherRepository
 }
