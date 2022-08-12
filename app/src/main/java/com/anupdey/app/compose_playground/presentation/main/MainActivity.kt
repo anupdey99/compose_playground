@@ -19,6 +19,8 @@ import androidx.navigation.compose.rememberNavController
 import com.anupdey.app.compose_playground.presentation.NavGraphs
 import com.anupdey.app.compose_playground.presentation.destinations.MainScreenDestination
 import com.anupdey.app.compose_playground.ui.theme.StockMarketAppTheme
+import com.anupdey.app.compose_playground.util.connectivity.ConnectivityObserver
+import com.anupdey.app.compose_playground.util.connectivity.NetworkConnectivityObserver
 import com.ramcosta.composedestinations.DestinationsNavHost
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -27,11 +29,20 @@ import timber.log.Timber
 @ExperimentalComposeUiApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
+    private lateinit var connectivityObserver: ConnectivityObserver
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        connectivityObserver = NetworkConnectivityObserver(this)
+
         setContent {
             StockMarketAppTheme {
                 // A surface container using the 'background' color from the theme
+                val connectivityStatus by connectivityObserver.connectionObserve().collectAsState(
+                    initial = ConnectivityObserver.Status.Unavailable
+                )
                 val scaffoldState = rememberScaffoldState()
                 val navController = rememberNavController()
                 val coroutineScope = rememberCoroutineScope()
